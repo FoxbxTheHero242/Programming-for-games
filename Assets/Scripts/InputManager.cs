@@ -12,7 +12,7 @@ public static class InputManager
 
         _controls.Game.Movement.performed += Move =>
         {
-            player.setMoveDir(Move.ReadValue<Vector2>());
+            player.setMoveDir(Move.ReadValue<Vector3>());
         };
         _controls.Permanent.Enable();
     }

@@ -7,7 +7,7 @@ public class Player : MonoBehaviour
 
     [SerializeField] private float speed;
 
-    private Vector2 _moveDir;
+    private Vector3 _moveDir;
     // Start is called before the first frame update
     void Start()
     {
@@ -15,13 +15,14 @@ public class Player : MonoBehaviour
         InputManager.GameMode();
     }
 
-    public void setMoveDir(Vector2 moveDir)
+    public void setMoveDir(Vector3 moveDir)
     {
         _moveDir= moveDir;
     }
     // Update is called once per frame
     void Update()
     {
-        transform.position += _moveDir * speed * Time.deltaTime;
+        //Debug.Log(_moveDir);
+        transform.position += (Vector3) (_moveDir * (speed * Time.deltaTime));
     }
 }

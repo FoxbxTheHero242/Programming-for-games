@@ -31,7 +31,7 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                     ""name"": ""Movement"",
                     ""type"": ""PassThrough"",
                     ""id"": ""1028ac2a-2ad1-498c-8dd4-bafade2dec14"",
-                    ""expectedControlType"": ""Vector2"",
+                    ""expectedControlType"": ""Vector3"",
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true
@@ -59,9 +59,9 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": false
                 },
                 {
-                    ""name"": ""WASD"",
-                    ""id"": ""982c6891-9672-44a0-88ee-504fad790b13"",
-                    ""path"": ""2DVector"",
+                    ""name"": ""Movement"",
+                    ""id"": ""54017d55-04ed-4454-bf0e-6e8035b20a74"",
+                    ""path"": ""3DVector"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -70,9 +70,9 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": false
                 },
                 {
-                    ""name"": ""up"",
-                    ""id"": ""93698db5-2dc4-4fa8-95cc-6c43616126e0"",
-                    ""path"": ""<Keyboard>/w"",
+                    ""name"": ""Up"",
+                    ""id"": ""86162ed5-c2e4-4e3f-9880-23ef46804bab"",
+                    ""path"": """",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -81,9 +81,9 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": true
                 },
                 {
-                    ""name"": ""down"",
-                    ""id"": ""4b1e442c-7c69-4e2f-a9d4-e43bcdc1a38e"",
-                    ""path"": ""<Keyboard>/s"",
+                    ""name"": ""Down"",
+                    ""id"": ""9fcef155-aebd-4612-9cc7-86f8ad3cda34"",
+                    ""path"": """",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -92,8 +92,8 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": true
                 },
                 {
-                    ""name"": ""left"",
-                    ""id"": ""68beb8a2-2cf5-4b15-acbf-70aa9ba4a5f7"",
+                    ""name"": ""Left"",
+                    ""id"": ""a5eb8b43-5b0b-4da2-ace9-28493c902d91"",
                     ""path"": ""<Keyboard>/a"",
                     ""interactions"": """",
                     ""processors"": """",
@@ -103,9 +103,31 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": true
                 },
                 {
-                    ""name"": ""right"",
-                    ""id"": ""b711e07a-472b-41ad-a373-d8d9a6a05e2b"",
+                    ""name"": ""Right"",
+                    ""id"": ""0d595f32-2608-44d6-b496-2074060f6e56"",
                     ""path"": ""<Keyboard>/d"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Movement"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""Forward"",
+                    ""id"": ""2e2509c6-627e-4c82-b967-31270b49b4d7"",
+                    ""path"": ""<Keyboard>/w"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Movement"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""Backward"",
+                    ""id"": ""d9f27daa-b302-4e4a-8df4-78b6b8126505"",
+                    ""path"": ""<Keyboard>/s"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
