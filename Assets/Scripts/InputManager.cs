@@ -24,6 +24,11 @@ public static class InputManager
         {
             player.clear();
         };
+        //using the mouse position to control the gun rotation
+        _controls.Game.MouseDir.performed += mouseMove =>
+        {
+            player.GunMove(mouseMove.ReadValue<Vector2>());
+        };
         //NOT MINE:
         _controls.Permanent.Enable();
     }

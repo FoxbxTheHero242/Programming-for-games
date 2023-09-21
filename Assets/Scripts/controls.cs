@@ -53,6 +53,15 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""MouseDir"",
+                    ""type"": ""PassThrough"",
+                    ""id"": ""e2d0a636-de79-4998-a039-fd299441ff4c"",
+                    ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
                 }
             ],
             ""bindings"": [
@@ -165,6 +174,17 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                     ""action"": ""Clear"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""82ea71b4-eb8f-4067-9a03-655ebfd30443"",
+                    ""path"": ""<Mouse>/position"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""MouseDir"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -232,6 +252,7 @@ public partial class @Controls: IInputActionCollection2, IDisposable
         m_Game_Movement = m_Game.FindAction("Movement", throwIfNotFound: true);
         m_Game_Shoot = m_Game.FindAction("Shoot", throwIfNotFound: true);
         m_Game_Clear = m_Game.FindAction("Clear", throwIfNotFound: true);
+        m_Game_MouseDir = m_Game.FindAction("MouseDir", throwIfNotFound: true);
         // Ui
         m_Ui = asset.FindActionMap("Ui", throwIfNotFound: true);
         m_Ui_Newaction = m_Ui.FindAction("New action", throwIfNotFound: true);
@@ -302,6 +323,7 @@ public partial class @Controls: IInputActionCollection2, IDisposable
     private readonly InputAction m_Game_Movement;
     private readonly InputAction m_Game_Shoot;
     private readonly InputAction m_Game_Clear;
+    private readonly InputAction m_Game_MouseDir;
     public struct GameActions
     {
         private @Controls m_Wrapper;
@@ -309,6 +331,7 @@ public partial class @Controls: IInputActionCollection2, IDisposable
         public InputAction @Movement => m_Wrapper.m_Game_Movement;
         public InputAction @Shoot => m_Wrapper.m_Game_Shoot;
         public InputAction @Clear => m_Wrapper.m_Game_Clear;
+        public InputAction @MouseDir => m_Wrapper.m_Game_MouseDir;
         public InputActionMap Get() { return m_Wrapper.m_Game; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -327,6 +350,9 @@ public partial class @Controls: IInputActionCollection2, IDisposable
             @Clear.started += instance.OnClear;
             @Clear.performed += instance.OnClear;
             @Clear.canceled += instance.OnClear;
+            @MouseDir.started += instance.OnMouseDir;
+            @MouseDir.performed += instance.OnMouseDir;
+            @MouseDir.canceled += instance.OnMouseDir;
         }
 
         private void UnregisterCallbacks(IGameActions instance)
@@ -340,6 +366,9 @@ public partial class @Controls: IInputActionCollection2, IDisposable
             @Clear.started -= instance.OnClear;
             @Clear.performed -= instance.OnClear;
             @Clear.canceled -= instance.OnClear;
+            @MouseDir.started -= instance.OnMouseDir;
+            @MouseDir.performed -= instance.OnMouseDir;
+            @MouseDir.canceled -= instance.OnMouseDir;
         }
 
         public void RemoveCallbacks(IGameActions instance)
@@ -454,6 +483,7 @@ public partial class @Controls: IInputActionCollection2, IDisposable
         void OnMovement(InputAction.CallbackContext context);
         void OnShoot(InputAction.CallbackContext context);
         void OnClear(InputAction.CallbackContext context);
+        void OnMouseDir(InputAction.CallbackContext context);
     }
     public interface IUiActions
     {

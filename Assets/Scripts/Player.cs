@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Serialization;
 using UnityEngine.UIElements;
@@ -11,6 +12,9 @@ public class Player : MonoBehaviour
     [SerializeField] private float ShotSpeed;
     [SerializeField] private GameObject bullet;
     [SerializeField] private Transform bulletParent;
+    [SerializeField] private Transform gun;
+    [SerializeField] private Transform shotPoint;
+    
     private Rigidbody _self;
 
     private Vector3 _moveDir;
@@ -31,8 +35,8 @@ public class Player : MonoBehaviour
     public void shoot()
     {
         //trying to spawn a sphere at the player as a bullet without it moving with the player
-        GameObject go = Instantiate(bullet, transform.position+Vector3.up, transform.rotation, bulletParent);
-        go.GetComponent<Rigidbody>().AddForce(Vector3.up*ShotSpeed);
+        GameObject go = Instantiate(bullet, shotPoint.position, gun.rotation, bulletParent);
+        go.GetComponent<Rigidbody>().AddForce(go.transform.forward*ShotSpeed);
     }
 
     public void clear()
@@ -42,11 +46,22 @@ public class Player : MonoBehaviour
             Destroy(bulletParent.GetChild(i).gameObject);
         }
     }
+
+    //Making moving gun to shoot balls
+    public void GunMove(Vector2 mouse)
+    {
+        gun.rotation= new Quaternion(gun.rotation.x+mouse.x*0,-1*(mouse.x-Screen.width/2)/(Screen.width/2),
+            gun.rotation.z,gun.rotation.w);
+    }
     //NOT MINE:
-    // Update is called once per frame
+    // pdate is called once per frame
     void Update()
     {
         //Debug.Log(_moveDir);
-        _self.MovePosition(transform.position+ (Vector3) (_moveDir * (speed * Time.deltaTime)));
+        //modified to move forward
+        
+        _self.MovePosition(_self.position+  _self.rotation*(Vector3)(_moveDir* (speed * Time.deltaTime)));
+        
+        
     }
 }
