@@ -14,6 +14,17 @@ public static class InputManager
         {
             player.setMoveDir(Move.ReadValue<Vector3>());
         };
+        //MINE:
+        //using the key I bound as the "shoot" key
+        _controls.Game.Shoot.performed += shoot =>
+        {
+            player.shoot();
+        };
+        _controls.Game.Clear.performed += destroy =>
+        {
+            player.clear();
+        };
+        //NOT MINE:
         _controls.Permanent.Enable();
     }
 

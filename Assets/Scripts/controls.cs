@@ -44,6 +44,15 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Clear"",
+                    ""type"": ""Button"",
+                    ""id"": ""045ef904-dfc0-4142-814a-f15e1dada252"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -138,11 +147,22 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""734502fd-54d8-4b4f-89ef-0146b398d7db"",
-                    ""path"": """",
+                    ""path"": ""<Mouse>/leftButton"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Shoot"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""b4196bbb-a396-42d4-87dc-0b2bbcd7a3d6"",
+                    ""path"": ""<Keyboard>/tab"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Clear"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -211,6 +231,7 @@ public partial class @Controls: IInputActionCollection2, IDisposable
         m_Game = asset.FindActionMap("Game", throwIfNotFound: true);
         m_Game_Movement = m_Game.FindAction("Movement", throwIfNotFound: true);
         m_Game_Shoot = m_Game.FindAction("Shoot", throwIfNotFound: true);
+        m_Game_Clear = m_Game.FindAction("Clear", throwIfNotFound: true);
         // Ui
         m_Ui = asset.FindActionMap("Ui", throwIfNotFound: true);
         m_Ui_Newaction = m_Ui.FindAction("New action", throwIfNotFound: true);
@@ -280,12 +301,14 @@ public partial class @Controls: IInputActionCollection2, IDisposable
     private List<IGameActions> m_GameActionsCallbackInterfaces = new List<IGameActions>();
     private readonly InputAction m_Game_Movement;
     private readonly InputAction m_Game_Shoot;
+    private readonly InputAction m_Game_Clear;
     public struct GameActions
     {
         private @Controls m_Wrapper;
         public GameActions(@Controls wrapper) { m_Wrapper = wrapper; }
         public InputAction @Movement => m_Wrapper.m_Game_Movement;
         public InputAction @Shoot => m_Wrapper.m_Game_Shoot;
+        public InputAction @Clear => m_Wrapper.m_Game_Clear;
         public InputActionMap Get() { return m_Wrapper.m_Game; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -301,6 +324,9 @@ public partial class @Controls: IInputActionCollection2, IDisposable
             @Shoot.started += instance.OnShoot;
             @Shoot.performed += instance.OnShoot;
             @Shoot.canceled += instance.OnShoot;
+            @Clear.started += instance.OnClear;
+            @Clear.performed += instance.OnClear;
+            @Clear.canceled += instance.OnClear;
         }
 
         private void UnregisterCallbacks(IGameActions instance)
@@ -311,6 +337,9 @@ public partial class @Controls: IInputActionCollection2, IDisposable
             @Shoot.started -= instance.OnShoot;
             @Shoot.performed -= instance.OnShoot;
             @Shoot.canceled -= instance.OnShoot;
+            @Clear.started -= instance.OnClear;
+            @Clear.performed -= instance.OnClear;
+            @Clear.canceled -= instance.OnClear;
         }
 
         public void RemoveCallbacks(IGameActions instance)
@@ -424,6 +453,7 @@ public partial class @Controls: IInputActionCollection2, IDisposable
     {
         void OnMovement(InputAction.CallbackContext context);
         void OnShoot(InputAction.CallbackContext context);
+        void OnClear(InputAction.CallbackContext context);
     }
     public interface IUiActions
     {
