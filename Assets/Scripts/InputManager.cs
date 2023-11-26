@@ -29,6 +29,14 @@ public static class InputManager
         {
             player.GunMove(mouseMove.ReadValue<Vector2>());
         };
+        _controls.Game.Jump.performed += jumped =>
+        {
+            player.jump();
+        };
+        _controls.Game.reload.performed += reload =>
+        {
+            player.Relaod();
+        };
         //NOT MINE:
         _controls.Permanent.Enable();
     }

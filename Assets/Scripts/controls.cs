@@ -62,6 +62,24 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""Jump"",
+                    ""type"": ""Button"",
+                    ""id"": ""eceffb43-c549-4882-9bde-25c5269b3033"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""reload"",
+                    ""type"": ""Button"",
+                    ""id"": ""39142ff0-9a6f-4be7-b9ca-6d2d45c39a8a"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -185,6 +203,28 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                     ""action"": ""MouseDir"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""3dbdcc01-f488-4ffd-9271-6300701d533f"",
+                    ""path"": ""<Keyboard>/space"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Jump"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""40d02d7d-253d-469e-9b16-dc42c962d718"",
+                    ""path"": ""<Keyboard>/r"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""reload"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -253,6 +293,8 @@ public partial class @Controls: IInputActionCollection2, IDisposable
         m_Game_Shoot = m_Game.FindAction("Shoot", throwIfNotFound: true);
         m_Game_Clear = m_Game.FindAction("Clear", throwIfNotFound: true);
         m_Game_MouseDir = m_Game.FindAction("MouseDir", throwIfNotFound: true);
+        m_Game_Jump = m_Game.FindAction("Jump", throwIfNotFound: true);
+        m_Game_reload = m_Game.FindAction("reload", throwIfNotFound: true);
         // Ui
         m_Ui = asset.FindActionMap("Ui", throwIfNotFound: true);
         m_Ui_Newaction = m_Ui.FindAction("New action", throwIfNotFound: true);
@@ -324,6 +366,8 @@ public partial class @Controls: IInputActionCollection2, IDisposable
     private readonly InputAction m_Game_Shoot;
     private readonly InputAction m_Game_Clear;
     private readonly InputAction m_Game_MouseDir;
+    private readonly InputAction m_Game_Jump;
+    private readonly InputAction m_Game_reload;
     public struct GameActions
     {
         private @Controls m_Wrapper;
@@ -332,6 +376,8 @@ public partial class @Controls: IInputActionCollection2, IDisposable
         public InputAction @Shoot => m_Wrapper.m_Game_Shoot;
         public InputAction @Clear => m_Wrapper.m_Game_Clear;
         public InputAction @MouseDir => m_Wrapper.m_Game_MouseDir;
+        public InputAction @Jump => m_Wrapper.m_Game_Jump;
+        public InputAction @reload => m_Wrapper.m_Game_reload;
         public InputActionMap Get() { return m_Wrapper.m_Game; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -353,6 +399,12 @@ public partial class @Controls: IInputActionCollection2, IDisposable
             @MouseDir.started += instance.OnMouseDir;
             @MouseDir.performed += instance.OnMouseDir;
             @MouseDir.canceled += instance.OnMouseDir;
+            @Jump.started += instance.OnJump;
+            @Jump.performed += instance.OnJump;
+            @Jump.canceled += instance.OnJump;
+            @reload.started += instance.OnReload;
+            @reload.performed += instance.OnReload;
+            @reload.canceled += instance.OnReload;
         }
 
         private void UnregisterCallbacks(IGameActions instance)
@@ -369,6 +421,12 @@ public partial class @Controls: IInputActionCollection2, IDisposable
             @MouseDir.started -= instance.OnMouseDir;
             @MouseDir.performed -= instance.OnMouseDir;
             @MouseDir.canceled -= instance.OnMouseDir;
+            @Jump.started -= instance.OnJump;
+            @Jump.performed -= instance.OnJump;
+            @Jump.canceled -= instance.OnJump;
+            @reload.started -= instance.OnReload;
+            @reload.performed -= instance.OnReload;
+            @reload.canceled -= instance.OnReload;
         }
 
         public void RemoveCallbacks(IGameActions instance)
@@ -484,6 +542,8 @@ public partial class @Controls: IInputActionCollection2, IDisposable
         void OnShoot(InputAction.CallbackContext context);
         void OnClear(InputAction.CallbackContext context);
         void OnMouseDir(InputAction.CallbackContext context);
+        void OnJump(InputAction.CallbackContext context);
+        void OnReload(InputAction.CallbackContext context);
     }
     public interface IUiActions
     {
