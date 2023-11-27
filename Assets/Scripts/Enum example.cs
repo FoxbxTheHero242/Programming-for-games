@@ -1,6 +1,4 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace ScriptableObjects
@@ -14,20 +12,9 @@ namespace ScriptableObjects
         Legendary=8
     }
 
-
+    [CreateAssetMenu(menuName = "Enum/Enumexample")]
     public class Enumexample : ScriptableObject
     {
-        
-        // Start is called before the first frame update
-        void Start()
-        {
-
-        }
-
-        // Update is called once per frame
-        void Update()
-        {
-
-        }
+        [field: SerializeField] public Raity _raity { get; set; }
     }
 }
