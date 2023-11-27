@@ -10,6 +10,6 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1a98d8ba034e39a4e9b58911d73a1664, type: 3}
-  m_Name: Rarity
+  m_Name: Rarity 2
   m_EditorClassIdentifier: 
   <_raity>k__BackingField: 0
