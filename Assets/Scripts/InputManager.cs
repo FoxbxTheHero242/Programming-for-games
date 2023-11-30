@@ -41,6 +41,15 @@ public static class InputManager
         _controls.Permanent.Enable();
     }
 
+    public static void ASS10(clicktoplace clicktoplace)
+    {
+        _controls = new Controls();
+        
+        _controls.Game.MouseDir.performed += mouseMove =>
+        {
+            clicktoplace.movemouse(mouseMove.ReadValue<Vector2>());
+        };
+    }
     public static void GameMode()
     {
         _controls.Game.Enable();

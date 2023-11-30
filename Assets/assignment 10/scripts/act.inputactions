@@ -1,0 +1,54 @@
+{
+    "name": "act",
+    "maps": [
+        {
+            "name": "fuck",
+            "id": "066efa03-7038-4178-ae18-f5a4d2b99ad3",
+            "actions": [
+                {
+                    "name": "bullshit",
+                    "type": "PassThrough",
+                    "id": "1d0b02c9-2e38-47f7-860c-713b21b07743",
+                    "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                },
+                {
+                    "name": "Unity_Sucks_Balls",
+                    "type": "Button",
+                    "id": "4713cc72-d64b-437f-8e42-bf4b84d03ed5",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "e3e441b2-d2b9-4219-969b-bea818421496",
+                    "path": "<Mouse>/position",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "bullshit",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "a3b94812-4563-49ef-af0c-d5d9bb432d21",
+                    "path": "<Mouse>/leftButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Unity_Sucks_Balls",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": []
+}

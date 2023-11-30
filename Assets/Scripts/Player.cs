@@ -76,6 +76,7 @@ public class Player : MonoBehaviour
     //Making moving gun to shoot balls
     public void GunMove(Vector2 mouse)
     {
+        print("she movin");
         gun.rotation= new Quaternion(gun.rotation.x+mouse.x*0,(mouse.x-Screen.width/2)/(Screen.width/2),
             gun.rotation.z,gun.rotation.w);
     }
